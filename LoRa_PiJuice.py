@@ -23,22 +23,22 @@ def initialise():
 
 def setRTC():
     d_wake = dict()
-        d_wake['year'] = 'EVERY_YEAR'
-        d_wake['month'] = 'EVERY_MONTH'
-        d_wake['day'] = 'EVERY_DAY'
-        d_wake['hour'] = 'EVERY_HOUR'
-        d_wake['minute'] = 0
-        d_wake['second'] = 0
+    d_wake['year'] = 'EVERY_YEAR'
+    d_wake['month'] = 'EVERY_MONTH'
+    d_wake['day'] = 'EVERY_DAY'
+    d_wake['hour'] = 'EVERY_HOUR'
+    d_wake['minute'] = 0
+    d_wake['second'] = 0
 
-        status = pj.rtcAlarm.SetAlarm(d_wake)
-        if status['error'] != 'NO_ERROR':
-            print('Cannot set alarm\n')
-            sys.exit()
-        else:
-            print('Alarm set for ' + str(pj.rtcAlarm.GetAlarm()))
+    status = pj.rtcAlarm.SetAlarm(d_wake)
+    if status['error'] != 'NO_ERROR':
+        print('Cannot set alarm\n')
+        sys.exit()
+    else:
+        print('Alarm set for ' + str(pj.rtcAlarm.GetAlarm()))
 
-        pj.rtcAlarm.SetWakeupEnabled(True)
-        time.sleep(0.4)
+    pj.rtcAlarm.SetWakeupEnabled(True)
+    time.sleep(0.4)
 
 def shutdown():
     # PiJuice shuts down power to Rpi after 20 sec from now
