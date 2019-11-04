@@ -47,19 +47,20 @@ def shutdown():
     pj.power.SetPowerOff(20)
     subprocess.call(["sudo", "poweroff"])
 
-def getData():
+def sendData():
     raw_temp = bme280.get_temperature()
     humidity = bme280.get_humidity()
     pressure = bme280.get_pressure()
-    gas = gas.read_all()
+    #gas = gas.read_all()
     charge_level = pijuice.status.GetChargeLevel()[data]
     #print(raw_temp)
 
-def sendData():
+def sen
     frame = LppFrame()
     frame.add_temperature(0, raw_temp)
-    frame.add_humitidy(6, humidity)
-    frame.add_pressure(1, pressure)
+    frame.add_humitidy(1, humidity)
+    frame.add_pressure(2, pressure)
+    frame.add_
 
     buffer = frame.bytes()
 
