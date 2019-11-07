@@ -5,7 +5,7 @@ if grep "start_x=1" /boot/config.txt
 then
         pass
 else
-        sed -i "s/start_x=0/start_x=1/g" /boot/config.txt
+        sudo sed -i "$ a start_x=1" /boot/config.txt
 fi
 
 sudo apt-get install ffmpeg libmariadb3 libpq5 libmicrohttpd12 -y
