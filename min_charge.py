@@ -1,7 +1,6 @@
 #!/usr/bin/python
-
-#Use this script to enable or disable the min charge value. Can be used in conjunction with no power event. 
 import json
+import os
 
 with open("/var/lib/pijuice/pijuice_config.JSON", "r+") as jsonFile:
     data = json.load(jsonFile)
@@ -13,3 +12,4 @@ with open("/var/lib/pijuice/pijuice_config.JSON", "r+") as jsonFile:
     jsonFile.seek(0)  # rewind
     json.dump(data, jsonFile)
     jsonFile.truncate()
+os.system('sudo systemctl restart pijuice.service')
