@@ -1,14 +1,14 @@
 #!/bin/bash
-
-while true
+echo "Select one of the options below:"
+echo "Mode 1 - RGB 888 (Default)"
+echo "Mode 2 - RGB 666"
+echo "Mode 3 - RGB 666 + GPIO26"
+echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
+while read -p "Option: " answer
 do
   # (1) prompt user, and read command line argument
-  echo "Select one of the options below:"
-  echo "Mode 1 - RGB 888 (Default)"
-  echo "Mode 2 - RGB 666"
-  echo "Mode 3 - RGB 666 + GPIO26"
-  echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
-  read -e -p "Option:  " answer
+
+#  read -p "Option:  " answer
 
   if grep -Fxq "#AnyBeam" /boot/config.txt; then
       sed -i '/#AnyBeam/,$d' /boot/config.txt
