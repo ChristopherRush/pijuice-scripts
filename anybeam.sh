@@ -12,12 +12,12 @@ function mode_select()
           if [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]] || [[ "$mode" == 4 ]]; then
                   break
           fi
-  done
-}
+#  done
+#}
 
 
-function configure_mode()
-{
+#function configure_mode()
+#{
   if grep -Fxq "#AnyBeam" /boot/config.txt; then
     sed -i '/#AnyBeam/,$d' /boot/config.txt
   fi
@@ -93,6 +93,7 @@ dtoverlay=i2c-gpio,i2c_gpio_delay_us=1,i2c_gpio_sda=26,i2c_gpio_scl=27
 EOF
     ;;
   esac
+done
 }
 
 function reboot()
@@ -105,5 +106,5 @@ function reboot()
 
 #Main function
 mode_select
-configure_mode
+#configure_mode
 reboot
