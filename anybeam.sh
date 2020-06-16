@@ -4,7 +4,7 @@ echo "Mode 1 - RGB 888 (Default)"
 echo "Mode 2 - RGB 666"
 echo "Mode 3 - RGB 666 + GPIO26"
 echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
-while read -p "Option: " answer
+while read -p 'Option: ' answer
 do
   # (1) prompt user, and read command line argument
 
