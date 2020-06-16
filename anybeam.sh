@@ -10,7 +10,7 @@ function mode_select()
   while true; do
           read -p "Option: " mode
           if [[ "$mode" == 0 ]] || [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]]; then
-                  return $mode
+                  break
           fi
   done
 }
