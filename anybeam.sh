@@ -8,11 +8,11 @@ function mode_select()
   echo "Mode 3 - RGB 666 + GPIO26"
   echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
   while true; do
-          read -p "Option: " mode < /dev/tty
+          read -p "Option: " mode > /dev/tty
           if [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]] || [[ "$mode" == 4 ]]; then
                   break
           fi
-  done > /dev/tty
+  done < /dev/tty
 }
 
 
