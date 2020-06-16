@@ -9,7 +9,7 @@ function mode_select()
   echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
   while true; do
           read -p "Option: " mode
-          if [[ "$mode" == 0 ]] || [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]]; then
+          if [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]] || [[ "$mode" == 4 ]]; then
                   break
           fi
   done
