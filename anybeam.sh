@@ -8,7 +8,7 @@ function mode_select()
   echo "Mode 3 - RGB 666 + GPIO26"
   echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
   while true; do
-          read -p "Option: " mode < /dev/tty
+          read -r -p 'Option: ' mode
           if [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]] || [[ "$mode" == 4 ]]; then
                   break
           fi
@@ -19,7 +19,7 @@ function mode_select()
 function configure_mode()
 {
   if grep -Fxq "#AnyBeam" /boot/config.txt; then
-    sed '/#AnyBeam/,$d' /boot/config.txt
+    sed -i '/#AnyBeam/,$d' /boot/config.txt
   fi
 
   case $mode in
@@ -98,6 +98,7 @@ EOF
 function reboot()
 {
   echo "Rebooting system now......."
+  sleep 3
   reboot
   exit 0
 }
