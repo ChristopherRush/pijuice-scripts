@@ -1,30 +1,22 @@
 #!/bin/bash
 
-function mode_select()
-{
+while true
+do
+  # (1) prompt user, and read command line argument
   echo "Select one of the options below:"
   echo "Mode 1 - RGB 888 (Default)"
   echo "Mode 2 - RGB 666"
   echo "Mode 3 - RGB 666 + GPIO26"
   echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
-  while true; do
-    read -p "Option: " mode
-    #if [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]] || [[ "$mode" == 4 ]]; then
-    #  break
-    #fi
-#  done
-#}
+  read -p "Option:  " answer
 
-
-#function configure_mode()
-#{
   if grep -Fxq "#AnyBeam" /boot/config.txt; then
-    sed -i '/#AnyBeam/,$d' /boot/config.txt
+      sed -i '/#AnyBeam/,$d' /boot/config.txt
   fi
-
-  case $mode in
-    1)
-    cat >> /boot/config.txt <<EOF
+  # (2) handle the input we were given
+  case $answer in
+   1 )
+           cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -39,9 +31,13 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070027
 EOF
-    ;;
-    2)
-    cat >> /boot/config.txt <<EOF
+        echo Rebooting system now.......
+        sleep 3
+        reboot
+           break;;
+
+   2 )
+   cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -56,9 +52,13 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
 EOF
-    ;;
-    3)
-    cat >> /boot/config.txt <<EOF
+        echo Rebooting system now.......
+        sleep 3
+        reboot
+   break;;
+
+   3 )
+   cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -73,8 +73,12 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
 EOF
-    ;;
-    4)
+        echo Rebooting system now.......
+        sleep 3
+        reboot
+    break;;
+
+    4 )
     cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
@@ -91,20 +95,10 @@ dpi_mode=85
 dpi_output_format=0x070026
 dtoverlay=i2c-gpio,i2c_gpio_delay_us=1,i2c_gpio_sda=26,i2c_gpio_scl=27
 EOF
-    ;;
+        echo Rebooting system now.......
+        sleep 3
+        reboot
+    break;;
+
     esac
-  done
-}
-
-function reboot()
-{
-  echo Rebooting system now.......
-  sleep 3
-  reboot
-  exit 0
-}
-
-#Main function
-mode_select
-#configure_mode
-reboot
+done
