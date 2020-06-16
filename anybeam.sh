@@ -8,10 +8,10 @@ function mode_select()
   echo "Mode 3 - RGB 666 + GPIO26"
   echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
   while true; do
-          read -e -p "Option: " mode
-          if [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]] || [[ "$mode" == 4 ]]; then
-                  break
-          fi
+    read -p "Option: " mode
+    #if [[ "$mode" == 1 ]] || [[ "$mode" == 2 ]] || [[ "$mode" == 3 ]] || [[ "$mode" == 4 ]]; then
+    #  break
+    #fi
 #  done
 #}
 
@@ -92,8 +92,8 @@ dpi_output_format=0x070026
 dtoverlay=i2c-gpio,i2c_gpio_delay_us=1,i2c_gpio_sda=26,i2c_gpio_scl=27
 EOF
     ;;
-  esac
-done
+    esac
+  done
 }
 
 function reboot()
