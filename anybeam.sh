@@ -97,9 +97,9 @@ EOF
 
 function reboot()
 {
-  echo "Rebooting system now......." > /dev/tty
+  echo "Rebooting system now......."
   sleep 3
-  reboot
+  echo reboot
   exit 0
 }
 
