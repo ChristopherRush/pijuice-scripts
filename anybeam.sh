@@ -8,7 +8,7 @@ do
   echo "Mode 2 - RGB 666"
   echo "Mode 3 - RGB 666 + GPIO26"
   echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
-  read -p "Option:  " answer
+  read -e -p "Option:  " answer
 
   if grep -Fxq "#AnyBeam" /boot/config.txt; then
       sed -i '/#AnyBeam/,$d' /boot/config.txt
