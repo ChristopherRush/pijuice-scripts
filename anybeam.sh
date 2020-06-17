@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+#Check if script is being run as root
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
 apt update
 apt install whiptail -y
 
@@ -102,7 +108,7 @@ EOF
 } | whiptail --title "AnyBeam Configuration" --gauge "Please wait whilst configuration completes" 6 60 0
 
 
-if (whiptail --title "Configuration Complete" --yesno "Do you want to reboot? yes/no" 8 78); then
+if (whiptail --title "Configuration Complete" --yesno "Do you want to reboot?" 8 78); then
     reboot
 else
     exit 0
