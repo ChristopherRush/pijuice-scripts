@@ -1,22 +1,30 @@
-#!/bin/bash
-echo "Select one of the options below:"
-echo "Mode 1 - RGB 888 (Default)"
-echo "Mode 2 - RGB 666"
-echo "Mode 3 - RGB 666 + GPIO26"
-echo "Mode 4 - RGB 666 + GPOI26 + GPIO27"
-while read -p 'Option: ' answer
-do
-  # (1) prompt user, and read command line argument
+#!/usr/bin/env bash
+apt update
+apt install whiptail -y
 
-#  read -p "Option:  " answer
+Option=""
+while [ "$Option" = "" ]; do
+   Option=$(whiptail --title "Please select installation mode"  --menu  "" 12 50 4 \
+   "1"  "RGB 888 (default) " \
+   "2"  "RGB 666           " \
+   "3"  "RGB 666 + GPIO26   " \
+   "4"  "RGB 666 + GPIO26 +GPIO27   "  3>&1 1>&2 2>&3)
+   if [ $? = 1 ]; then
+      whiptail --msgbox "No version selected. Try again" 8 40
+   fi
+done
 
-  if grep -Fxq "#AnyBeam" /boot/config.txt; then
-      sed -i '/#AnyBeam/,$d' /boot/config.txt
-  fi
-  # (2) handle the input we were given
-  case $answer in
-   1 )
-           cat >> /boot/config.txt <<EOF
+{
+        sleep 2
+        echo -e  "XXX\n0\nRemoving any exisiting configuration\nXXX"
+        if grep -Fxq "#AnyBeam" /boot/config.txt; then
+            sed -i '/#AnyBeam/,$d' /boot/config.txt
+        fi
+        sleep 2
+        echo -e  "XXX\n50\nConfiguraing AnyBeam Mode\nXXX"
+        case $Option in
+         1 )
+                 cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -31,13 +39,10 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070027
 EOF
-        echo Rebooting system now.......
-        sleep 3
-        reboot
-           break;;
+                 break;;
 
-   2 )
-   cat >> /boot/config.txt <<EOF
+         2 )
+         cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -52,13 +57,10 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
 EOF
-        echo Rebooting system now.......
-        sleep 3
-        reboot
-   break;;
+         break;;
 
-   3 )
-   cat >> /boot/config.txt <<EOF
+         3 )
+         cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -73,13 +75,10 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
 EOF
-        echo Rebooting system now.......
-        sleep 3
-        reboot
-    break;;
+          break;;
 
-    4 )
-    cat >> /boot/config.txt <<EOF
+          4 )
+          cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -95,10 +94,26 @@ dpi_mode=85
 dpi_output_format=0x070026
 dtoverlay=i2c-gpio,i2c_gpio_delay_us=1,i2c_gpio_sda=26,i2c_gpio_scl=27
 EOF
-        echo Rebooting system now.......
-        sleep 3
-        reboot
-    break;;
+  esac
+        sleep 2
+        echo -e  "XXX\n100\nConfiguration Complete\nXXX"
+        sleep 2
+} | whiptail --title "AnyBeam Configuration" --gauge "Please wait whilst configuration completes" 6 60 0
 
-    esac
+
+if (whiptail --title "Configuration Complete" --yesno "Do you want to reboot? yes/no" 8 78); then
+    reboot
+else
+    exit 0
+fi
+
+
+
+
+
+
+
+
+  # (2) handle the input we were given
+
 done
