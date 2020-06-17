@@ -38,7 +38,8 @@ display_default_lcd=1
 dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070027
-EOF;;
+EOF
+;;
 
          2 )
          cat >> /boot/config.txt <<EOF
@@ -55,7 +56,8 @@ display_default_lcd=1
 dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
-EOF;;
+EOF
+;;
 
          3 )
          cat >> /boot/config.txt <<EOF
@@ -72,7 +74,8 @@ display_default_lcd=1
 dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
-EOF;;
+EOF
+;;
 
           4 )
           cat >> /boot/config.txt <<EOF
@@ -90,7 +93,8 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
 dtoverlay=i2c-gpio,i2c_gpio_delay_us=1,i2c_gpio_sda=26,i2c_gpio_scl=27
-EOF;;
+EOF
+;;
         esac
         sleep 2
         echo -e  "XXX\n100\nConfiguration Complete\nXXX"
