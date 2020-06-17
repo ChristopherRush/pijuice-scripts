@@ -24,7 +24,7 @@ done
         echo -e  "XXX\n50\nConfiguraing AnyBeam Mode\nXXX"
         case $Option in
          1 )
-                 cat >> /boot/config.txt <<EOF
+         cat >> /boot/config.txt <<EOF
 #AnyBeam
 dtoverlay=dpi24
 overscan_left=0
@@ -95,7 +95,7 @@ dpi_output_format=0x070026
 dtoverlay=i2c-gpio,i2c_gpio_delay_us=1,i2c_gpio_sda=26,i2c_gpio_scl=27
 EOF
 ;;
-        esac
+  esac
         sleep 2
         echo -e  "XXX\n100\nConfiguration Complete\nXXX"
         sleep 2
