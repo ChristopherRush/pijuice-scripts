@@ -39,7 +39,7 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070027
 EOF
-                 break;;
+                 ;;
 
          2 )
          cat >> /boot/config.txt <<EOF
@@ -57,7 +57,7 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
 EOF
-         break;;
+         ;;
 
          3 )
          cat >> /boot/config.txt <<EOF
@@ -75,7 +75,7 @@ dpi_group=2
 dpi_mode=85
 dpi_output_format=0x070026
 EOF
-          break;;
+          ;;
 
           4 )
           cat >> /boot/config.txt <<EOF
