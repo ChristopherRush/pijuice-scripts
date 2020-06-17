@@ -22,7 +22,7 @@ done
 
 {
         sleep 2
-        echo -e  "XXX\n0\nRemoving any exisiting configuration\nXXX"
+        echo -e  "XXX\n25\nRemoving any exisiting configuration\nXXX"
         if grep -Fxq "#AnyBeam" /boot/config.txt; then
             sed -i '/#AnyBeam/,$d' /boot/config.txt
         fi
