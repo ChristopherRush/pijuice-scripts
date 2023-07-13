@@ -19,14 +19,12 @@ def check_button_status(button_name, button_data):
 while True:
     # Get the status of the buttons
     button_events = pijuice.status.GetButtonEvents()
+    button_data = button_events['data']
 
-    if button_events['error'] == 'NO_ERROR':
-        button_data = button_events['data']
-
-        # Check status of each button
-        check_button_status('SW1', button_data)
-        check_button_status('SW2', button_data)
-        check_button_status('SW3', button_data)
+    # Check status of each button
+    check_button_status('SW1', button_data)
+    check_button_status('SW2', button_data)
+    check_button_status('SW3', button_data)
 
     # Delay to prevent CPU overuse
     time.sleep(0.1)
